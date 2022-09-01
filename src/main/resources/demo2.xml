@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+    <settings>
+        <!-- 缓存的全局开关 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 延迟加载的全局开关，开启时，所有关联对象都会延迟加载，特定关联关系时设置fetchType来覆盖该项的开关状态 -->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <!-- 当启用时,对任意延迟属性的调用会使带有延迟加载属性的对象完整加载，反之，每种属性将会按需加载 -->
+        <setting name="aggressiveLazyLoading" value="true"/>
+        <!-- 是否允许单一语句返回多结果集(需要驱动兼容) -->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!-- 使用标签代替列名(不同驱动的表现不同) -->
+        <setting name="useColumnLabel" value="true"/>
+        <!-- 允许JDBC支持自动生成主键(需要驱动兼容，设置为true，强制使用自动生成的主键) -->
+        <setting name="useGeneratedKeys" value="false"/>
+        <!-- 设置等待数据库响应的秒数，未配置时这个值是驱动默认的时间 -->
+        <setting name="defaultStatementTimeout" value="25"/>
+        <!-- 是否开启自动驼峰命名映射(小驼峰) -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 指定对象的方法触发一次延迟加载，多个方法使用逗号分隔 -->
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+        <!-- 打印日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+
+    </settings>
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/zcx_source"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="sql/user.xml"/>
+    </mappers>
+</configuration>
